@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .models import Drink
 import requests
 
@@ -56,3 +56,10 @@ def recommend_drink(request):
         'temp': temp,
         'city': city
     })
+def drink_detail(request, slug):
+    drink = get_object_or_404(Drink, slug=slug)
+    return render(request, 'recommend/drink_detail.html', {
+        'drink': drink
+    })
+def home(request):
+    return render(request, 'home.html')  # اینجا می‌توانید صفحه اصلی خود را نمایش دهید
