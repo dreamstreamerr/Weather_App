@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from .models import Drink
 import requests
 
-API_KEY = 'd12112bfc7792cd2628fdc6229ad0250'  # حتماً کلید واقعی خودتو بذار
+API_KEY = 'd12112bfc7792cd2628fdc6229ad0250'
 
 def get_client_ip(request):
     x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
@@ -35,7 +35,6 @@ def recommend_drink(request):
     ip = get_client_ip(request)
     city, country_code = get_location_by_ip(ip)
 
-    # اگر location نگرفت، دستی مقدار بده (مثلاً تهران، ایران)
     if not city or not country_code:
         city = 'Gonbad-e Qabus'
         country_code = 'IR'
@@ -61,5 +60,5 @@ def drink_detail(request, slug):
     return render(request, 'recommend/drink_detail.html', {
         'drink': drink
     })
-def home(request):
-    return render(request, 'home.html')  # اینجا می‌توانید صفحه اصلی خود را نمایش دهید
+# def home(request):
+#     return render(request, 'home.html')
