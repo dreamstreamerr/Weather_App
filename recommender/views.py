@@ -50,6 +50,7 @@ def recommend_drink(request):
         else:
             drinks = Drink.objects.filter(temperature_type='hot')
 
+
     return render(request, 'recommend/recommend.html', {
         'drinks': drinks,
         'temp': temp,
@@ -57,6 +58,16 @@ def recommend_drink(request):
     })
 def drink_detail(request, slug):
     drink = get_object_or_404(Drink, slug=slug)
+
+    if drink.temperature_type == 'cold':
+        discounted_price = drink.price * 0.9
+    elif drink.temperature_type == 'warm':
+        discounted_price = drink.price * 0.8
+    elif drink.temperature_type == 'hot':
+        discounted_price = drink.price * 0.7
+
+    drink.discounted_price = int(discounted_price)
+
     return render(request, 'recommend/drink_detail.html', {
         'drink': drink
     })

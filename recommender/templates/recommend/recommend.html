@@ -21,6 +21,7 @@
 {% endif %}
 
 <ul>
+
     {% for drink in drinks %}
         <li><a href="{% url 'drink_detail' slug=drink.slug %}">{{ drink.name }}</a></li>
     {% empty %}

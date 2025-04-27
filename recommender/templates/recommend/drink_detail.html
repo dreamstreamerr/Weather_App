@@ -9,10 +9,17 @@
     <title>Document</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
+
 <h1>{{ drink.name }}</h1>
+
 {% if drink.image %}
     <img src="{{ drink.image.url }}" alt="{{ drink.name }}" width="300">
 {% endif %}
-<p><strong>دما مناسب:</strong> {{ drink.get_temperature_type_display }}</p>
+
+{#<p><strong>دما مناسب:</strong> {{ drink.get_temperature_type_display }}</p>#}
+<p><strong>قیمت اصلی:</strong> {{ drink.price }}</p>
+<p>قیمت با تخفیف: {{ drink.discounted_price }}</p>
+
 <p>{{ drink.description }}</p>
+
 <a href="{% url 'recommend_drink' %}">بازگشت</a>
